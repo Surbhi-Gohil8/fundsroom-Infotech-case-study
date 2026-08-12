@@ -1,0 +1,206 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  ADMIN
+  SALES
+  WAREHOUSE
+  ACCOUNTS
+}
+
+enum CustomerType {
+  RETAIL
+  WHOLESALE
+  DISTRIBUTOR
+}
+
+enum CustomerStatus {
+  LEAD
+  ACTIVE
+  INACTIVE
+}
+
+enum StockMovementType {
+  IN
+  OUT
+}
+
+enum ChallanStatus {
+  DRAFT
+  CONFIRMED
+  CANCELLED
+}
+
+enum InvoiceStatus {
+  PAID
+  UNPAID
+  CANCELLED
+}
+
+model User {
+  id           String             @id @default(uuid())
+  name         String
+  email        String             @unique
+  passwordHash String
+  role         Role
+  isActive     Boolean            @default(true)
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+  
+  customers          Customer[]         @relation("UserCreatedCustomers")
+  followUps          CustomerFollowUp[] @relation("UserCreatedFollowUps")
+  stockMovements     StockMovement[]    @relation("UserStockMovements")
+  challans           SalesChallan[]     @relation("UserChallans")
+  invoices           Invoice[]          @relation("UserInvoices")
+}
+
+model Customer {
+  id           String         @id @default(uuid())
+  customerName String
+  mobile       String
+  email        String
+  businessName String
+  gstNumber    String?
+  customerType CustomerType
+  address      String
+  status       CustomerStatus @default(LEAD)
+  followUpDate DateTime?
+  notes        String
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  createdBy    String
+  
+  creator      User               @relation("UserCreatedCustomers", fields: [createdBy], references: [id])
+  followUps    CustomerFollowUp[]
+  challans     SalesChallan[]
+  invoices     Invoice[]
+
+  @@index([customerName])
+  @@index([mobile])
+  @@index([email])
+  @@index([status])
+  @@index([followUpDate])
+}
+
+model CustomerFollowUp {
+  id           String   @id @default(uuid())
+  customerId   String
+  note         String
+  followUpDate DateTime
+  createdBy    String
+  createdAt    DateTime @default(now())
+
+  customer     Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  creator      User     @relation("UserCreatedFollowUps", fields: [createdBy], references: [id])
+
+  @@index([customerId])
+  @@index([createdAt])
+}
+
+model Product {
+  id                String   @id @default(uuid())
+  name              String
+  sku               String   @unique
+  category          String
+  unitPrice         Float
+  currentStock      Int      @default(0)
+  minimumStock      Int      @default(0)
+  warehouseLocation String
+  imageUrl          String?
+  isActive          Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  stockMovements    StockMovement[]
+  challanItems      SalesChallanItem[]
+
+  @@index([name])
+  @@index([sku])
+  @@index([category])
+  @@index([currentStock])
+}
+
+model StockMovement {
+  id              String            @id @default(uuid())
+  productId       String
+  quantityChanged Int
+  movementType    StockMovementType
+  reason          String
+  referenceType   String?
+  referenceId     String?
+  createdBy       String
+  createdAt       DateTime          @default(now())
+
+  product         Product           @relation(fields: [productId], references: [id], onDelete: Cascade)
+  creator         User              @relation("UserStockMovements", fields: [createdBy], references: [id])
+
+  @@index([productId])
+  @@index([createdAt])
+}
+
+model SalesChallan {
+  id            String        @id @default(uuid())
+  challanNumber String        @unique
+  customerId    String
+  totalQuantity Int           @default(0)
+  status        ChallanStatus @default(DRAFT)
+  createdBy     String
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  confirmedAt   DateTime?
+  cancelledAt   DateTime?
+
+  customer      Customer           @relation(fields: [customerId], references: [id])
+  creator       User               @relation("UserChallans", fields: [createdBy], references: [id])
+  items         SalesChallanItem[]
+  invoices      Invoice[]
+
+  @@index([challanNumber])
+  @@index([customerId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model SalesChallanItem {
+  id                  String  @id @default(uuid())
+  challanId           String
+  productId           String?
+  productNameSnapshot String
+  skuSnapshot         String
+  unitPriceSnapshot   Float
+  quantity            Int
+  totalPrice          Float
+
+  challan             SalesChallan @relation(fields: [challanId], references: [id], onDelete: Cascade)
+  product             Product?     @relation(fields: [productId], references: [id], onDelete: SetNull)
+
+  @@index([challanId])
+  @@index([productId])
+}
+
+model Invoice {
+  id            String        @id @default(uuid())
+  invoiceNumber String        @unique
+  challanId     String
+  customerId    String
+  subtotal      Float
+  tax           Float
+  total         Float
+  status        InvoiceStatus @default(UNPAID)
+  createdBy     String
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  challan       SalesChallan  @relation(fields: [challanId], references: [id])
+  customer      Customer      @relation(fields: [customerId], references: [id])
+  creator       User          @relation("UserInvoices", fields: [createdBy], references: [id])
+
+  @@index([invoiceNumber])
+  @@index([challanId])
+  @@index([customerId])
+}

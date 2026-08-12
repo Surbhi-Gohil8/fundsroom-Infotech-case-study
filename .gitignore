@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Environment Variables
+.env
+.env.local
+.env.production
+.env.development
+
+# Builds
+dist/
+build/
+.svelte-kit/
+.next/
+out/
+
+# Database files
+*.db
+*.db-journal
+/backend/prisma/dev.db
+/backend/prisma/dev.db-journal
+
+# Uploads media folder
+/backend/uploads/
+
+# IDE / System configs
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+npm-debug.log*

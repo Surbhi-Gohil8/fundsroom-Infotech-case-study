@@ -1,0 +1,804 @@
+[2026-08-12 09:40:28:4028] [ERROR]: POST /api/auth/login - Error: Invalid credentials
+[2026-08-12 09:40:28:4028] [ERROR]: GET /api/customers - Error: Authentication token missing or invalid
+[2026-08-12 09:40:28:4028] [ERROR]: POST /api/customers - Error: You do not have permission to access this resource
+[2026-08-12 09:40:28:4028] [ERROR]: POST /api/customers - Error: [
+  {
+    "origin": "string",
+    "code": "invalid_format",
+    "format": "email",
+    "pattern": "/^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$/",
+    "path": [
+      "email"
+    ],
+    "message": "Invalid email address"
+  }
+]
+[2026-08-12 09:40:28:4028] [ERROR]: POST /api/products - Error: A product with this SKU already exists
+[2026-08-12 09:40:28:4028] [ERROR]: POST /api/products/09a9f168-e52c-494d-b6ea-698993b36559/stock - Error: Insufficient stock. Current stock is 15, requested adjustment is OUT 20.
+[2026-08-12 09:40:28:4028] [ERROR]: POST /api/challans/6cb1be3e-19f7-415d-97d0-ce515c4d19a0/confirm - Error: This challan is already confirmed
+[2026-08-12 09:40:28:4028] [ERROR]: POST /api/challans/ad73d0a7-b490-4879-9281-2617f9af2b46/confirm - Error: AppError is not defined
+[2026-08-12 09:41:33:4133] [ERROR]: POST /api/auth/login - Error: Invalid credentials
+[2026-08-12 09:41:33:4133] [ERROR]: GET /api/customers - Error: Authentication token missing or invalid
+[2026-08-12 09:41:33:4133] [ERROR]: POST /api/customers - Error: You do not have permission to access this resource
+[2026-08-12 09:41:33:4133] [ERROR]: POST /api/customers - Error: [
+  {
+    "origin": "string",
+    "code": "invalid_format",
+    "format": "email",
+    "pattern": "/^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$/",
+    "path": [
+      "email"
+    ],
+    "message": "Invalid email address"
+  }
+]
+[2026-08-12 09:41:33:4133] [ERROR]: POST /api/products - Error: A product with this SKU already exists
+[2026-08-12 09:41:33:4133] [ERROR]: POST /api/products/dbf73863-8198-4f82-a46c-6795472607a8/stock - Error: Insufficient stock. Current stock is 15, requested adjustment is OUT 20.
+[2026-08-12 09:41:33:4133] [ERROR]: POST /api/challans/5352469e-b761-49d0-af0e-8f49b6899894/confirm - Error: This challan is already confirmed
+[2026-08-12 09:41:33:4133] [ERROR]: POST /api/challans/c75fa77c-85c5-4dea-b62f-b9cb0bc9ae85/confirm - Error: Insufficient stock for product HP Elitebook Laptop. Available: 10, requested: 12.
+[2026-08-12 09:56:29:5629] [ERROR]: POST /api/auth/login - Error: Invalid credentials
+[2026-08-12 09:56:29:5629] [ERROR]: GET /api/customers - Error: Authentication token missing or invalid
+[2026-08-12 09:56:29:5629] [ERROR]: POST /api/customers - Error: You do not have permission to access this resource
+[2026-08-12 09:56:29:5629] [ERROR]: POST /api/customers - Error: [
+  {
+    "origin": "string",
+    "code": "invalid_format",
+    "format": "email",
+    "pattern": "/^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$/",
+    "path": [
+      "email"
+    ],
+    "message": "Invalid email address"
+  }
+]
+[2026-08-12 09:56:29:5629] [ERROR]: POST /api/products - Error: A product with this SKU already exists
+[2026-08-12 09:56:29:5629] [ERROR]: POST /api/products/7de343f9-b85d-439f-a0f1-0bc79a430208/stock - Error: Insufficient stock. Current stock is 15, requested adjustment is OUT 20.
+[2026-08-12 09:56:29:5629] [ERROR]: POST /api/challans/b132cd9d-7968-470d-8bb0-f2ef5d6f49b9/confirm - Error: This challan is already confirmed
+[2026-08-12 09:56:29:5629] [ERROR]: POST /api/challans/0e6d42f4-14fd-44fa-b1e0-3023f7492b25/confirm - Error: Insufficient stock for product HP Elitebook Laptop. Available: 10, requested: 12.
+[2026-08-12 10:19:46:1946] [ERROR]: POST /api/auth/login - Error: Invalid credentials
+[2026-08-12 10:19:46:1946] [ERROR]: GET /api/customers - Error: Authentication token missing or invalid
+[2026-08-12 10:19:46:1946] [ERROR]: POST /api/customers - Error: You do not have permission to access this resource
+[2026-08-12 10:19:46:1946] [ERROR]: POST /api/customers - Error: [
+  {
+    "origin": "string",
+    "code": "invalid_format",
+    "format": "email",
+    "pattern": "/^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$/",
+    "path": [
+      "email"
+    ],
+    "message": "Invalid email address"
+  }
+]
+[2026-08-12 10:19:46:1946] [ERROR]: POST /api/products - Error: A product with this SKU already exists
+[2026-08-12 10:19:46:1946] [ERROR]: POST /api/products/d0e0e8c3-6a43-4b0b-9abd-f8a7a2cb87ca/stock - Error: Insufficient stock. Current stock is 15, requested adjustment is OUT 20.
+[2026-08-12 10:19:46:1946] [ERROR]: POST /api/challans/a4380e16-c295-4c8d-ba05-db5bd9f4a1b2/confirm - Error: This challan is already confirmed
+[2026-08-12 10:19:46:1946] [ERROR]: POST /api/challans/26f7358c-3314-46f6-b3f4-4dc3645751f5/confirm - Error: Insufficient stock for product HP Elitebook Laptop. Available: 10, requested: 12.
+[2026-08-12 10:24:33:2433] [ERROR]: POST /api/auth/login - Error: Invalid credentials
+[2026-08-12 10:24:33:2433] [ERROR]: GET /api/customers - Error: Authentication token missing or invalid
+[2026-08-12 10:24:33:2433] [ERROR]: POST /api/customers - Error: You do not have permission to access this resource
+[2026-08-12 10:24:33:2433] [ERROR]: POST /api/customers - Error: [
+  {
+    "origin": "string",
+    "code": "invalid_format",
+    "format": "email",
+    "pattern": "/^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$/",
+    "path": [
+      "email"
+    ],
+    "message": "Invalid email address"
+  }
+]
+[2026-08-12 10:24:33:2433] [ERROR]: POST /api/products - Error: A product with this SKU already exists
+[2026-08-12 10:24:33:2433] [ERROR]: POST /api/products/8e33a30f-7195-4096-ace5-a94136036912/stock - Error: Insufficient stock. Current stock is 15, requested adjustment is OUT 20.
+[2026-08-12 10:24:33:2433] [ERROR]: POST /api/challans/24cae816-749e-47d6-b7b5-fb42f8ef4293/confirm - Error: This challan is already confirmed
+[2026-08-12 10:24:33:2433] [ERROR]: POST /api/challans/2cd6ba76-e9f3-4b09-aca3-095e5f96ffc9/confirm - Error: Insufficient stock for product HP Elitebook Laptop. Available: 10, requested: 12.
+[2026-08-12 10:27:46:2746] [INFO]: AWS S3 storage backend initialized
+[2026-08-12 10:27:46:2746] [INFO]: Server is running in development mode on port 5000
+[2026-08-12 10:27:46:2746] [INFO]: API Documentation available at http://localhost:5000/api/docs
+[2026-08-12 10:28:07:287] [INFO]: AWS S3 storage backend initialized
+[2026-08-12 10:28:07:287] [INFO]: Server is running in development mode on port 5000
+[2026-08-12 10:28:07:287] [INFO]: API Documentation available at http://localhost:5000/api/docs
+[2026-08-12 10:31:28:3128] [ERROR]: GET /api/products - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:31:28:3128] [ERROR]: GET /api/products - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:31:30:3130] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:31:30:3130] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:31:32:3132] [ERROR]: GET /api/challans - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:31:32:3132] [ERROR]: GET /api/challans - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:31:35:3135] [ERROR]: GET /api/invoices/4511fde2-944c-44c8-a229-ba1bfd4756bf/pdf - Error: Authentication token missing or invalid
+[2026-08-12 10:33:06:336] [ERROR]: GET /api/invoices/4511fde2-944c-44c8-a229-ba1bfd4756bf/pdf - Error: Authentication token missing or invalid
+[2026-08-12 10:33:18:3318] [ERROR]: GET /api/challans - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:33:18:3318] [ERROR]: GET /api/challans - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:33:30:3330] [ERROR]: GET /api/invoices/4511fde2-944c-44c8-a229-ba1bfd4756bf/pdf - Error: Authentication token missing or invalid
+[2026-08-12 10:35:30:3530] [ERROR]: GET /api/invoices/4511fde2-944c-44c8-a229-ba1bfd4756bf/pdf - Error: Authentication token missing or invalid
+[2026-08-12 10:35:41:3541] [ERROR]: GET /api/invoices/4511fde2-944c-44c8-a229-ba1bfd4756bf/pdf - Error: Authentication token missing or invalid
+[2026-08-12 10:38:32:3832] [ERROR]: GET /api/invoices/4511fde2-944c-44c8-a229-ba1bfd4756bf/pdf - Error: Authentication token missing or invalid
+[2026-08-12 10:39:07:397] [INFO]: AWS S3 storage backend initialized
+[2026-08-12 10:39:07:397] [INFO]: Server is running in development mode on port 5000
+[2026-08-12 10:39:07:397] [INFO]: API Documentation available at http://localhost:5000/api/docs
+[2026-08-12 10:39:07:397] [INFO]: AWS S3 storage backend initialized
+[2026-08-12 10:39:07:397] [INFO]: Server is running in development mode on port 5000
+[2026-08-12 10:39:07:397] [INFO]: API Documentation available at http://localhost:5000/api/docs
+[2026-08-12 10:44:09:449] [ERROR]: GET /api/challans - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:44:09:449] [ERROR]: GET /api/challans - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:44:11:4411] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:44:11:4411] [ERROR]: GET /api/products - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:44:11:4411] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:44:11:4411] [ERROR]: GET /api/products - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:44:19:4419] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:44:19:4419] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:45:12:4512] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:45:24:4524] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:45:27:4527] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:45:29:4529] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:45:37:4537] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:45:37:4537] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:45:37:4537] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:45:37:4537] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:45:42:4542] [ERROR]: GET /api/products - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:45:42:4542] [ERROR]: GET /api/products - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:45:43:4543] [ERROR]: GET /api/products/stock-movements - Error: 
+Invalid `prisma.stockMovement.findMany()` invocation in
+D:\final\backend\src\modules\products\products.controller.ts:335:28
+
+  332 }
+  333 
+  334 const [movements, total] = await Promise.all([
+→ 335   prisma.stockMovement.findMany({
+          where: {},
+          skip: 0,
+          take: "15",
+                ~~~~
+          orderBy: {
+            createdAt: "desc"
+          },
+          include: {
+            product: {
+              select: {
+                id: true,
+                name: true,
+                sku: true,
+                category: true,
+                currentStock: true
+              }
+            },
+            creator: {
+              select: {
+                id: true,
+                name: true
+              }
+            }
+          }
+        })
+
+Argument `take`: Invalid value provided. Expected Int, provided String.
+[2026-08-12 10:45:43:4543] [ERROR]: GET /api/products - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:45:43:4543] [ERROR]: GET /api/products/stock-movements - Error: 
+Invalid `prisma.stockMovement.findMany()` invocation in
+D:\final\backend\src\modules\products\products.controller.ts:335:28
+
+  332 }
+  333 
+  334 const [movements, total] = await Promise.all([
+→ 335   prisma.stockMovement.findMany({
+          where: {},
+          skip: 0,
+          take: "15",
+                ~~~~
+          orderBy: {
+            createdAt: "desc"
+          },
+          include: {
+            product: {
+              select: {
+                id: true,
+                name: true,
+                sku: true,
+                category: true,
+                currentStock: true
+              }
+            },
+            creator: {
+              select: {
+                id: true,
+                name: true
+              }
+            }
+          }
+        })
+
+Argument `take`: Invalid value provided. Expected Int, provided String.
+[2026-08-12 10:45:43:4543] [ERROR]: GET /api/products - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:45:44:4544] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:45:44:4544] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:45:48:4548] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:45:48:4548] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:46:05:465] [ERROR]: GET /api/challans - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:46:05:465] [ERROR]: GET /api/challans - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:46:06:466] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:46:06:466] [ERROR]: GET /api/products - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:46:06:466] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:46:06:466] [ERROR]: GET /api/products - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:46:13:4613] [ERROR]: GET /api/products - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:46:13:4613] [ERROR]: GET /api/products - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:46:15:4615] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:46:15:4615] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:46:16:4616] [ERROR]: GET /api/products - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:46:16:4616] [ERROR]: GET /api/products - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:46:54:4654] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:46:54:4654] [ERROR]: GET /api/customers - Error: Cannot set property query of #<IncomingMessage> which has only a getter
+[2026-08-12 10:47:26:4726] [INFO]: AWS S3 storage backend initialized
+[2026-08-12 10:47:26:4726] [INFO]: Server is running in development mode on port 5000
+[2026-08-12 10:47:26:4726] [INFO]: API Documentation available at http://localhost:5000/api/docs
+[2026-08-12 10:47:26:4726] [INFO]: AWS S3 storage backend initialized
+[2026-08-12 10:47:26:4726] [INFO]: Server is running in development mode on port 5000
+[2026-08-12 10:47:26:4726] [INFO]: API Documentation available at http://localhost:5000/api/docs
+[2026-08-12 10:48:50:4850] [ERROR]: GET /api/customers - Error: 
+Invalid `prisma.customer.findMany()` invocation in
+D:\final\backend\src\modules\customers\customers.controller.ts:31:23
+
+  28 }
+  29 
+  30 const [customers, total] = await Promise.all([
+→ 31   prisma.customer.findMany({
+         where: {},
+         skip: 0,
+         take: "10",
+               ~~~~
+         orderBy: {
+           undefined: undefined
+         },
+         include: {
+           creator: {
+             select: {
+               id: true,
+               name: true
+             }
+           }
+         }
+       })
+
+Argument `take`: Invalid value provided. Expected Int, provided String.
+[2026-08-12 10:48:50:4850] [ERROR]: GET /api/customers - Error: 
+Invalid `prisma.customer.findMany()` invocation in
+D:\final\backend\src\modules\customers\customers.controller.ts:31:23
+
+  28 }
+  29 
+  30 const [customers, total] = await Promise.all([
+→ 31   prisma.customer.findMany({
+         where: {},
+         skip: 0,
+         take: "10",
+               ~~~~
+         orderBy: {
+           undefined: undefined
+         },
+         include: {
+           creator: {
+             select: {
+               id: true,
+               name: true
+             }
+           }
+         }
+       })
+
+Argument `take`: Invalid value provided. Expected Int, provided String.
+[2026-08-12 10:49:19:4919] [ERROR]: GET /api/customers - Error: 
+Invalid `prisma.customer.findMany()` invocation in
+D:\final\backend\src\modules\customers\customers.controller.ts:31:23
+
+  28 }
+  29 
+  30 const [customers, total] = await Promise.all([
+→ 31   prisma.customer.findMany({
+         where: {},
+         skip: 0,
+         take: "10",
+               ~~~~
+         orderBy: {
+           undefined: undefined
+         },
+         include: {
+           creator: {
+             select: {
+               id: true,
+               name: true
+             }
+           }
+         }
+       })
+
+Argument `take`: Invalid value provided. Expected Int, provided String.
+[2026-08-12 10:49:22:4922] [ERROR]: GET /api/customers - Error: 
+Invalid `prisma.customer.findMany()` invocation in
+D:\final\backend\src\modules\customers\customers.controller.ts:31:23
+
+  28 }
+  29 
+  30 const [customers, total] = await Promise.all([
+→ 31   prisma.customer.findMany({
+         where: {},
+         skip: 0,
+         take: "10",
+               ~~~~
+         orderBy: {
+           undefined: undefined
+         },
+         include: {
+           creator: {
+             select: {
+               id: true,
+               name: true
+             }
+           }
+         }
+       })
+
+Argument `take`: Invalid value provided. Expected Int, provided String.
+[2026-08-12 10:49:22:4922] [ERROR]: GET /api/customers - Error: 
+Invalid `prisma.customer.findMany()` invocation in
+D:\final\backend\src\modules\customers\customers.controller.ts:31:23
+
+  28 }
+  29 
+  30 const [customers, total] = await Promise.all([
+→ 31   prisma.customer.findMany({
+         where: {},
+         skip: 0,
+         take: "10",
+               ~~~~
+         orderBy: {
+           undefined: undefined
+         },
+         include: {
+           creator: {
+             select: {
+               id: true,
+               name: true
+             }
+           }
+         }
+       })
+
+Argument `take`: Invalid value provided. Expected Int, provided String.
+[2026-08-12 10:49:31:4931] [ERROR]: POST /api/auth/login - Error: Invalid credentials
+[2026-08-12 10:49:31:4931] [ERROR]: GET /api/customers - Error: Authentication token missing or invalid
+[2026-08-12 10:49:31:4931] [ERROR]: POST /api/customers - Error: You do not have permission to access this resource
+[2026-08-12 10:49:31:4931] [ERROR]: POST /api/customers - Error: [
+  {
+    "origin": "string",
+    "code": "invalid_format",
+    "format": "email",
+    "pattern": "/^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$/",
+    "path": [
+      "email"
+    ],
+    "message": "Invalid email address"
+  }
+]
+[2026-08-12 10:49:31:4931] [ERROR]: POST /api/products - Error: A product with this SKU already exists
+[2026-08-12 10:49:31:4931] [ERROR]: POST /api/products/0ee926c6-8b1e-4d82-9238-2c0b3c57a2b3/stock - Error: Insufficient stock. Current stock is 15, requested adjustment is OUT 20.
+[2026-08-12 10:49:31:4931] [ERROR]: POST /api/challans/d1b132e0-1616-43d0-99c3-a81a17d6cd90/confirm - Error: This challan is already confirmed
+[2026-08-12 10:49:31:4931] [ERROR]: POST /api/challans/853e12f2-99a1-4e45-8e0f-cf033bd08e24/confirm - Error: Insufficient stock for product HP Elitebook Laptop. Available: 10, requested: 12.
+[2026-08-12 10:50:17:5017] [ERROR]: POST /api/auth/login - Error: Invalid credentials or inactive user
+[2026-08-12 10:50:52:5052] [ERROR]: POST /api/auth/login - Error: Invalid credentials or inactive user
+[2026-08-12 10:51:09:519] [ERROR]: POST /api/auth/login - Error: Invalid credentials or inactive user
+[2026-08-12 10:51:28:5128] [ERROR]: POST /api/auth/login - Error: Invalid credentials or inactive user
+[2026-08-12 10:52:06:526] [ERROR]: POST /api/auth/login - Error: Invalid credentials or inactive user
+[2026-08-12 10:52:49:5249] [ERROR]: POST /api/auth/login - Error: Invalid credentials or inactive user
+[2026-08-12 10:52:50:5250] [ERROR]: POST /api/auth/login - Error: Invalid credentials or inactive user
+[2026-08-12 10:52:51:5251] [ERROR]: POST /api/auth/login - Error: Invalid credentials or inactive user
+[2026-08-12 10:52:56:5256] [ERROR]: POST /api/auth/login - Error: Invalid credentials or inactive user
+[2026-08-12 10:52:58:5258] [ERROR]: POST /api/auth/login - Error: Invalid credentials or inactive user
+[2026-08-12 10:54:03:543] [ERROR]: POST /api/auth/login - Error: Invalid credentials or inactive user
+[2026-08-12 10:54:14:5414] [ERROR]: POST /api/auth/login - Error: Invalid credentials or inactive user
+[2026-08-12 10:56:09:569] [ERROR]: GET /api/customers - Error: 
+Invalid `prisma.customer.findMany()` invocation in
+D:\final\backend\src\modules\customers\customers.controller.ts:31:23
+
+  28 }
+  29 
+  30 const [customers, total] = await Promise.all([
+→ 31   prisma.customer.findMany({
+         where: {},
+         skip: 0,
+         take: "10",
+               ~~~~
+         orderBy: {
+           undefined: undefined
+         },
+         include: {
+           creator: {
+             select: {
+               id: true,
+               name: true
+             }
+           }
+         }
+       })
+
+Argument `take`: Invalid value provided. Expected Int, provided String.
+[2026-08-12 10:56:09:569] [ERROR]: GET /api/customers - Error: 
+Invalid `prisma.customer.findMany()` invocation in
+D:\final\backend\src\modules\customers\customers.controller.ts:31:23
+
+  28 }
+  29 
+  30 const [customers, total] = await Promise.all([
+→ 31   prisma.customer.findMany({
+         where: {},
+         skip: 0,
+         take: "10",
+               ~~~~
+         orderBy: {
+           undefined: undefined
+         },
+         include: {
+           creator: {
+             select: {
+               id: true,
+               name: true
+             }
+           }
+         }
+       })
+
+Argument `take`: Invalid value provided. Expected Int, provided String.
+[2026-08-12 10:56:33:5633] [ERROR]: GET /api/customers - Error: 
+Invalid `prisma.customer.findMany()` invocation in
+D:\final\backend\src\modules\customers\customers.controller.ts:31:23
+
+  28 }
+  29 
+  30 const [customers, total] = await Promise.all([
+→ 31   prisma.customer.findMany({
+         where: {},
+         skip: 0,
+         take: "10",
+               ~~~~
+         orderBy: {
+           undefined: undefined
+         },
+         include: {
+           creator: {
+             select: {
+               id: true,
+               name: true
+             }
+           }
+         }
+       })
+
+Argument `take`: Invalid value provided. Expected Int, provided String.
+[2026-08-12 10:57:15:5715] [ERROR]: GET /api/customers - Error: 
+Invalid `prisma.customer.findMany()` invocation in
+D:\final\backend\src\modules\customers\customers.controller.ts:31:23
+
+  28 }
+  29 
+  30 const [customers, total] = await Promise.all([
+→ 31   prisma.customer.findMany({
+         where: {},
+         skip: 0,
+         take: "10",
+               ~~~~
+         orderBy: {
+           undefined: undefined
+         },
+         include: {
+           creator: {
+             select: {
+               id: true,
+               name: true
+             }
+           }
+         }
+       })
+
+Argument `take`: Invalid value provided. Expected Int, provided String.
+[2026-08-12 10:57:40:5740] [INFO]: AWS S3 storage backend initialized
+[2026-08-12 10:57:40:5740] [INFO]: AWS S3 storage backend initialized
+[2026-08-12 10:57:41:5741] [INFO]: Server is running in development mode on port 5000
+[2026-08-12 10:57:41:5741] [INFO]: API Documentation available at http://localhost:5000/api/docs
+[2026-08-12 10:57:41:5741] [INFO]: Server is running in development mode on port 5000
+[2026-08-12 10:57:41:5741] [INFO]: API Documentation available at http://localhost:5000/api/docs
+[2026-08-12 10:58:06:586] [INFO]: AWS S3 storage backend initialized
+[2026-08-12 10:58:06:586] [INFO]: Server is running in development mode on port 5000
+[2026-08-12 10:58:06:586] [INFO]: API Documentation available at http://localhost:5000/api/docs
+[2026-08-12 10:58:06:586] [INFO]: AWS S3 storage backend initialized
+[2026-08-12 10:58:06:586] [INFO]: Server is running in development mode on port 5000
+[2026-08-12 10:58:06:586] [INFO]: API Documentation available at http://localhost:5000/api/docs
+[2026-08-12 10:58:15:5815] [INFO]: AWS S3 storage backend initialized
+[2026-08-12 10:58:15:5815] [INFO]: Server is running in development mode on port 5000
+[2026-08-12 10:58:15:5815] [INFO]: API Documentation available at http://localhost:5000/api/docs
+[2026-08-12 10:58:15:5815] [INFO]: AWS S3 storage backend initialized
+[2026-08-12 10:58:15:5815] [INFO]: Server is running in development mode on port 5000
+[2026-08-12 10:58:15:5815] [INFO]: API Documentation available at http://localhost:5000/api/docs
+[2026-08-12 10:59:16:5916] [ERROR]: GET /api/products/stock-movements - Error: 
+Invalid `prisma.stockMovement.findMany()` invocation in
+D:\final\backend\src\modules\products\products.controller.ts:337:28
+
+  334 }
+  335 
+  336 const [movements, total] = await Promise.all([
+→ 337   prisma.stockMovement.findMany({
+          where: {},
+          skip: 0,
+          take: "15",
+                ~~~~
+          orderBy: {
+            createdAt: "desc"
+          },
+          include: {
+            product: {
+              select: {
+                id: true,
+                name: true,
+                sku: true,
+                category: true,
+                currentStock: true
+              }
+            },
+            creator: {
+              select: {
+                id: true,
+                name: true
+              }
+            }
+          }
+        })
+
+Argument `take`: Invalid value provided. Expected Int, provided String.
+[2026-08-12 10:59:16:5916] [ERROR]: GET /api/products/stock-movements - Error: 
+Invalid `prisma.stockMovement.findMany()` invocation in
+D:\final\backend\src\modules\products\products.controller.ts:337:28
+
+  334 }
+  335 
+  336 const [movements, total] = await Promise.all([
+→ 337   prisma.stockMovement.findMany({
+          where: {},
+          skip: 0,
+          take: "15",
+                ~~~~
+          orderBy: {
+            createdAt: "desc"
+          },
+          include: {
+            product: {
+              select: {
+                id: true,
+                name: true,
+                sku: true,
+                category: true,
+                currentStock: true
+              }
+            },
+            creator: {
+              select: {
+                id: true,
+                name: true
+              }
+            }
+          }
+        })
+
+Argument `take`: Invalid value provided. Expected Int, provided String.
+[2026-08-12 10:59:18:5918] [ERROR]: GET /api/products/stock-movements - Error: 
+Invalid `prisma.stockMovement.findMany()` invocation in
+D:\final\backend\src\modules\products\products.controller.ts:337:28
+
+  334 }
+  335 
+  336 const [movements, total] = await Promise.all([
+→ 337   prisma.stockMovement.findMany({
+          where: {},
+          skip: 0,
+          take: "15",
+                ~~~~
+          orderBy: {
+            createdAt: "desc"
+          },
+          include: {
+            product: {
+              select: {
+                id: true,
+                name: true,
+                sku: true,
+                category: true,
+                currentStock: true
+              }
+            },
+            creator: {
+              select: {
+                id: true,
+                name: true
+              }
+            }
+          }
+        })
+
+Argument `take`: Invalid value provided. Expected Int, provided String.
+[2026-08-12 10:59:18:5918] [ERROR]: GET /api/products/stock-movements - Error: 
+Invalid `prisma.stockMovement.findMany()` invocation in
+D:\final\backend\src\modules\products\products.controller.ts:337:28
+
+  334 }
+  335 
+  336 const [movements, total] = await Promise.all([
+→ 337   prisma.stockMovement.findMany({
+          where: {},
+          skip: 0,
+          take: "15",
+                ~~~~
+          orderBy: {
+            createdAt: "desc"
+          },
+          include: {
+            product: {
+              select: {
+                id: true,
+                name: true,
+                sku: true,
+                category: true,
+                currentStock: true
+              }
+            },
+            creator: {
+              select: {
+                id: true,
+                name: true
+              }
+            }
+          }
+        })
+
+Argument `take`: Invalid value provided. Expected Int, provided String.
+[2026-08-12 10:59:23:5923] [ERROR]: GET /api/products/stock-movements - Error: 
+Invalid `prisma.stockMovement.findMany()` invocation in
+D:\final\backend\src\modules\products\products.controller.ts:337:28
+
+  334 }
+  335 
+  336 const [movements, total] = await Promise.all([
+→ 337   prisma.stockMovement.findMany({
+          where: {},
+          skip: 0,
+          take: "15",
+                ~~~~
+          orderBy: {
+            createdAt: "desc"
+          },
+          include: {
+            product: {
+              select: {
+                id: true,
+                name: true,
+                sku: true,
+                category: true,
+                currentStock: true
+              }
+            },
+            creator: {
+              select: {
+                id: true,
+                name: true
+              }
+            }
+          }
+        })
+
+Argument `take`: Invalid value provided. Expected Int, provided String.
+[2026-08-12 10:59:23:5923] [ERROR]: GET /api/products/stock-movements - Error: 
+Invalid `prisma.stockMovement.findMany()` invocation in
+D:\final\backend\src\modules\products\products.controller.ts:337:28
+
+  334 }
+  335 
+  336 const [movements, total] = await Promise.all([
+→ 337   prisma.stockMovement.findMany({
+          where: {},
+          skip: 0,
+          take: "15",
+                ~~~~
+          orderBy: {
+            createdAt: "desc"
+          },
+          include: {
+            product: {
+              select: {
+                id: true,
+                name: true,
+                sku: true,
+                category: true,
+                currentStock: true
+              }
+            },
+            creator: {
+              select: {
+                id: true,
+                name: true
+              }
+            }
+          }
+        })
+
+Argument `take`: Invalid value provided. Expected Int, provided String.
+[2026-08-12 10:59:54:5954] [ERROR]: GET /api/products/stock-movements - Error: 
+Invalid `prisma.stockMovement.findMany()` invocation in
+D:\final\backend\src\modules\products\products.controller.ts:337:28
+
+  334 }
+  335 
+  336 const [movements, total] = await Promise.all([
+→ 337   prisma.stockMovement.findMany({
+          where: {},
+          skip: 0,
+          take: "15",
+                ~~~~
+          orderBy: {
+            createdAt: "desc"
+          },
+          include: {
+            product: {
+              select: {
+                id: true,
+                name: true,
+                sku: true,
+                category: true,
+                currentStock: true
+              }
+            },
+            creator: {
+              select: {
+                id: true,
+                name: true
+              }
+            }
+          }
+        })
+
+Argument `take`: Invalid value provided. Expected Int, provided String.
+[2026-08-12 10:59:54:5954] [ERROR]: GET /api/products/stock-movements - Error: 
+Invalid `prisma.stockMovement.findMany()` invocation in
+D:\final\backend\src\modules\products\products.controller.ts:337:28
+
+  334 }
+  335 
+  336 const [movements, total] = await Promise.all([
+→ 337   prisma.stockMovement.findMany({
+          where: {},
+          skip: 0,
+          take: "15",
+                ~~~~
+          orderBy: {
+            createdAt: "desc"
+          },
+          include: {
+            product: {
+              select: {
+                id: true,
+                name: true,
+                sku: true,
+                category: true,
+                currentStock: true
+              }
+            },
+            creator: {
+              select: {
+                id: true,
+                name: true
+              }
+            }
+          }
+        })
+
+Argument `take`: Invalid value provided. Expected Int, provided String.
+[2026-08-12 11:00:44:044] [INFO]: AWS S3 storage backend initialized
+[2026-08-12 11:00:44:044] [INFO]: Server is running in development mode on port 5000
+[2026-08-12 11:00:44:044] [INFO]: API Documentation available at http://localhost:5000/api/docs
+[2026-08-12 11:00:44:044] [INFO]: AWS S3 storage backend initialized
+[2026-08-12 11:00:44:044] [INFO]: Server is running in development mode on port 5000
+[2026-08-12 11:00:44:044] [INFO]: API Documentation available at http://localhost:5000/api/docs
