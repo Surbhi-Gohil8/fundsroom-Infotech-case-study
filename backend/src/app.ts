@@ -66,61 +66,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 app.use('/uploads', express.static(path.resolve(__dirname, '../uploads')));
 
-const swaggerDocument = {
-  openapi: '3.0.0',
-  info: {
-    title: 'Mini ERP + CRM Operations Portal API',
-    version: '1.0.0',
-    description: 'REST API documentation for the Wholesale ERP/CRM Portal.',
-  },
-  servers: [
-    {
-      url: process.env.API_URL,
-      description: 'Production Server',
-    },
-  ],
-  components: {
-    securitySchemes: {
-      bearerAuth: {
-        type: 'http',
-        scheme: 'bearer',
-        bearerFormat: 'JWT',
-      },
-    },
-  },
-  security: [
-    {
-      bearerAuth: [],
-    },
-  ],
-  paths: {
-    '/api/auth/login': {
-      post: {
-        summary: 'User Login',
-        tags: ['Authentication'],
-        requestBody: {
-          required: true,
-          content: {
-            'application/json': {
-              schema: {
-                type: 'object',
-                required: ['email', 'password'],
-                properties: {
-                  email: { type: 'string', format: 'email', example: 'admin@example.com' },
-                  password: { type: 'string', example: 'password123' },
-                },
-              },
-            },
-          },
-        },
-        responses: {
-          200: { description: 'Successful login' },
-          401: { description: 'Unauthorized' },
-        },
-      },
-    },
-  },
-};
+import { swaggerDocument } from './config/swagger.js';
 
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
