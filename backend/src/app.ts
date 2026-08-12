@@ -13,8 +13,7 @@ import invoiceRoutes from './modules/invoices/invoices.routes.js';
 import dashboardRoutes from './modules/dashboard/dashboard.routes.js';
 import swaggerUi from 'swagger-ui-express';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// __dirname is natively available in CommonJS output
 
 const app = express();
 

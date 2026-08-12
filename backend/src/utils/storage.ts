@@ -3,10 +3,8 @@ import { env } from '../config/env.js';
 import { logger } from '../config/logger.js';
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// __dirname is natively available in CommonJS output
 
 const localUploadDir = path.resolve(__dirname, '../../uploads');
 if (!fs.existsSync(localUploadDir)) {

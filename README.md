@@ -1,10 +1,17 @@
-# 🏭 Mini ERP + CRM Operations Portal
+Yes. Based on your current README, I would update it to remove the emojis and also make the deployment/configuration section consistent with your current Prisma 7 setup.
 
-> A production-grade, full-stack internal operations portal built for wholesale/distribution companies — featuring role-based access control, real-time inventory management, CRM lead pipelines, atomic sales challan workflows, auto-generated tax invoices, and dynamic PDF streaming.
+You can replace your current `README.md` with the following:
+
+````markdown
+# Mini ERP + CRM Operations Portal
+
+A full-stack ERP + CRM operations portal built for wholesale and distribution companies.
+
+The application provides customer relationship management, product and inventory management, sales challans, authentication, role-based access control, and production-ready deployment configuration.
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 1. [Project Overview](#1-project-overview)
 2. [Technology Stack](#2-technology-stack)
@@ -16,91 +23,932 @@
 8. [Environment Configuration](#8-environment-configuration)
 9. [Demo Credentials](#9-demo-credentials)
 10. [Local Development Setup](#10-local-development-setup)
-11. [Production & Docker Deployment](#11-production--docker-deployment)
-12. [Testing](#12-testing)
-13. [Project Structure](#13-project-structure)
+11. [Production Deployment](#11-production-deployment)
+12. [Docker Deployment](#12-docker-deployment)
+13. [Testing](#13-testing)
+14. [Project Structure](#14-project-structure)
 
 ---
 
-## 1. Project Overview
+# 1. Project Overview
 
-This is a **48-hour Full Stack Developer Case Study** — a cohesive mini-ERP + CRM product demonstrating real-world engineering ability across the entire stack.
+This project was developed as a Full Stack Developer case study for a wholesale/distribution business.
 
-**What it solves**: Internal operations teams at wholesale/distribution companies need a single platform to manage customer relationships, track inventory, create delivery challans, confirm stock dispatch, and generate GST-compliant tax invoices — all with strict department-based access control.
+The system helps internal teams manage:
 
-**Key engineering highlights**:
-- ⚡ Concurrency-safe challan confirmation using PostgreSQL row-level locks
-- 🔄 Atomic stock deduction with automatic rollback on insufficient inventory
-- 📄 On-the-fly binary PDF streaming (no disk writes)
-- 🔐 JWT authentication with role-based middleware guards
-- ✅ 14 automated integration tests covering auth boundaries, schema validation, and transaction rollbacks
+- Customers and CRM follow-ups
+- Products
+- Inventory
+- Stock movements
+- Sales challans
+- User authentication
+- Role-based access control
+
+The application is designed around practical business workflows rather than unnecessary complexity.
+
+## Key Engineering Features
+
+- JWT authentication
+- bcrypt password hashing
+- Role-based authorization
+- Zod request validation
+- PostgreSQL database
+- Prisma ORM
+- Atomic stock operations
+- Transaction-based challan confirmation
+- Product snapshot data in challan items
+- Pagination and search
+- Centralized error handling
+- Responsive React admin interface
+- Production environment configuration
+- Docker support
 
 ---
 
-## 2. Technology Stack
+# 2. Technology Stack
 
-### Backend
+## Backend
+
 | Layer | Technology |
 |---|---|
-| Runtime | Node.js v22 + TypeScript |
-| Framework | Express 5 |
-| ORM | Prisma 7.9.1 |
-| Database | PostgreSQL 15 |
-| DB Driver | `@prisma/adapter-pg` (pg driver adapter) |
-| Auth | JWT (`jsonwebtoken`) + bcrypt |
-| Validation | Zod v4 |
-| PDF Generation | PDFKit (binary streaming) |
-| File Uploads | Multer (local disk fallback) / AWS S3 |
-| Logging | Winston (structured JSON) |
-| Testing | Vitest + Supertest |
-| Dev Server | `tsx watch` (ESM-native hot reload) |
-
-### Frontend
-| Layer | Technology |
-|---|---|
-| Framework | React 19 + Vite |
+| Runtime | Node.js |
 | Language | TypeScript |
-| Styling | Tailwind CSS |
-| Routing | React Router v7 |
-| HTTP Client | Axios |
-| Charts | Recharts |
-| Icons | Lucide React |
-| Forms | React Hook Form + Zod |
+| Framework | Express.js |
+| ORM | Prisma |
+| Database | PostgreSQL |
+| Authentication | JWT |
+| Password Hashing | bcrypt |
+| Validation | Zod |
+| HTTP Security | Helmet |
+| CORS | cors |
+| Logging | Morgan |
+| Development | tsx |
 
-### Infrastructure
+## Frontend
+
 | Layer | Technology |
 |---|---|
-| Containerization | Docker multi-stage builds |
-| Orchestration | Docker Compose |
-| Frontend Serving | Nginx (SPA fallback routing) |
-| CI | GitHub Actions |
+| Framework | React |
+| Language | TypeScript |
+| Build Tool | Vite |
+| Styling | Tailwind CSS |
+| Routing | React Router |
+| HTTP Client | Axios |
+| Forms | React Hook Form |
+| Validation | Zod |
+
+## Infrastructure
+
+| Layer | Technology |
+|---|---|
+| Frontend Hosting | AWS Amplify |
+| Backend Hosting | AWS EC2 |
+| Database | AWS RDS PostgreSQL |
+| Reverse Proxy | Nginx |
+| Containerization | Docker |
+| Source Control | GitHub |
 
 ---
 
-## 3. System Architecture
+# 3. System Architecture
 
+```text
+                         Internet
+                            |
+                            v
+                    AWS Amplify
+                    React Frontend
+                            |
+                            | HTTPS API Requests
+                            v
+                    AWS EC2 Instance
+                  Node.js + Express API
+                            |
+                            | PostgreSQL
+                            v
+                    AWS RDS PostgreSQL
+````
+
+## Local Architecture
+
+```text
+D:\final
+|
+├── backend/
+|   ├── src/
+|   ├── prisma/
+|   ├── package.json
+|   └── Dockerfile
+|
+├── frontend/
+|   ├── src/
+|   ├── package.json
+|   └── Dockerfile
+|
+├── .gitignore
+└── README.md
 ```
-d:\final\
-├── backend/          ← Node.js + Express API (port 5000)
-│   ├── prisma/       ← Schema, migrations, seed
+
+---
+
+# 4. Database Schema
+
+The application uses PostgreSQL with Prisma.
+
+## Main Entities
+
+```text
+User
+Customer
+CustomerFollowUp
+Product
+StockMovement
+SalesChallan
+SalesChallanItem
+Invoice
+```
+
+## Main Relationships
+
+```text
+User
+ |
+ +---- Customer
+ |
+ +---- CustomerFollowUp
+ |
+ +---- StockMovement
+ |
+ +---- SalesChallan
+ |
+ +---- Invoice
+
+
+Customer
+ |
+ +---- CustomerFollowUp
+ |
+ +---- SalesChallan
+ |
+ +---- Invoice
+
+
+Product
+ |
+ +---- StockMovement
+ |
+ +---- SalesChallanItem
+
+
+SalesChallan
+ |
+ +---- SalesChallanItem
+ |
+ +---- Invoice
+```
+
+## Important Constraints
+
+* User email is unique.
+* Product SKU is unique.
+* Challan number is unique.
+* Invoice number is unique.
+* Product stock cannot become negative.
+* Stock quantities must be greater than zero.
+* Challan item quantities must be greater than zero.
+* Foreign key relationships are enforced by PostgreSQL.
+* Challan items store product snapshot information.
+
+## Product Snapshot
+
+When a challan is created, the following product information is copied into `SalesChallanItem`:
+
+```text
+productNameSnapshot
+skuSnapshot
+unitPriceSnapshot
+quantity
+```
+
+This prevents historical challans from changing when the original product information changes.
+
+---
+
+# 5. Role-Based Access Control
+
+The system contains four roles:
+
+* ADMIN
+* SALES
+* WAREHOUSE
+* ACCOUNTS
+
+## Permission Matrix
+
+| Feature              | ADMIN | SALES | WAREHOUSE | ACCOUNTS |
+| -------------------- | :---: | :---: | :-------: | :------: |
+| Login                |  Yes  |  Yes  |    Yes    |    Yes   |
+| Dashboard            |  Yes  |  Yes  |    Yes    |    Yes   |
+| View Customers       |  Yes  |  Yes  |     No    |    Yes   |
+| Create Customers     |  Yes  |  Yes  |     No    |    No    |
+| Edit Customers       |  Yes  |  Yes  |     No    |    No    |
+| Delete Customers     |  Yes  |   No  |     No    |    No    |
+| View Follow-ups      |  Yes  |  Yes  |     No    |    Yes   |
+| Create Follow-ups    |  Yes  |  Yes  |     No    |    No    |
+| View Products        |  Yes  |  Yes  |    Yes    |    Yes   |
+| Create Products      |  Yes  |   No  |    Yes    |    No    |
+| Edit Products        |  Yes  |   No  |    Yes    |    No    |
+| View Stock           |  Yes  |  Yes  |    Yes    |    Yes   |
+| Adjust Stock         |  Yes  |   No  |    Yes    |    No    |
+| View Stock Movements |  Yes  |  Yes  |    Yes    |    Yes   |
+| Create Challans      |  Yes  |  Yes  |     No    |    No    |
+| Confirm Challans     |  Yes  |  Yes  |     No    |    No    |
+| Cancel Challans      |  Yes  |  Yes  |     No    |    No    |
+| View Challans        |  Yes  |  Yes  |     No    |    Yes   |
+| View Invoices        |  Yes  |  Yes  |     No    |    Yes   |
+| User Management      |  Yes  |   No  |     No    |    No    |
+
+Permissions are enforced at both levels:
+
+1. Backend API authorization middleware
+2. Frontend protected routes and navigation
+
+Frontend visibility is not treated as the security boundary.
+
+---
+
+# 6. Feature Modules
+
+## Authentication
+
+* Login
+* JWT authentication
+* Password hashing with bcrypt
+* `/api/auth/me`
+* Role-based authorization
+* Protected API routes
+* Centralized authentication errors
+
+## Customer CRM
+
+* Customer list
+* Customer search
+* Pagination
+* Customer creation
+* Customer editing
+* Customer details
+* Customer deletion
+* Follow-up notes
+* Follow-up dates
+
+Search supports:
+
+* Customer name
+* Mobile number
+* Business name
+* Email
+
+## Products
+
+* Product list
+* Product search
+* Pagination
+* Product creation
+* Product editing
+* Product details
+* Unique SKU validation
+* Low-stock detection
+
+## Inventory
+
+* Stock IN
+* Stock OUT
+* Stock movement history
+* Stock quantity validation
+* Insufficient stock protection
+* Stock movement audit trail
+
+Stock status is determined using:
+
+```text
+currentStock <= minimumStock
+```
+
+## Sales Challans
+
+Challan lifecycle:
+
+```text
+DRAFT
+  |
+  v
+CONFIRMED
+```
+
+or:
+
+```text
+DRAFT
+  |
+  v
+CANCELLED
+```
+
+Important business rules:
+
+* Draft challans do not reduce stock.
+* Confirmed challans reduce stock.
+* Cancelled challans do not reduce stock.
+* Stock can never become negative.
+* Confirmation validates every product before modifying stock.
+* Confirmation uses a database transaction.
+* If any product has insufficient stock, the complete transaction is rolled back.
+* OUT stock movements are created during successful confirmation.
+* Duplicate confirmation is prevented.
+* Product snapshot information is stored in challan items.
+
+---
+
+# 7. API Reference
+
+All APIs are prefixed with:
+
+```text
+/api
+```
+
+Protected routes require:
+
+```text
+Authorization: Bearer <JWT_TOKEN>
+```
+
+## Authentication
+
+| Method | Endpoint          | Access        | Description  |
+| ------ | ----------------- | ------------- | ------------ |
+| POST   | `/api/auth/login` | Public        | Login        |
+| GET    | `/api/auth/me`    | Authenticated | Current user |
+
+## Customers
+
+| Method | Endpoint                       | Access                   |
+| ------ | ------------------------------ | ------------------------ |
+| GET    | `/api/customers`               | ADMIN / SALES / ACCOUNTS |
+| POST   | `/api/customers`               | ADMIN / SALES            |
+| GET    | `/api/customers/:id`           | ADMIN / SALES / ACCOUNTS |
+| PUT    | `/api/customers/:id`           | ADMIN / SALES            |
+| DELETE | `/api/customers/:id`           | ADMIN                    |
+| GET    | `/api/customers/:id/followups` | ADMIN / SALES / ACCOUNTS |
+| POST   | `/api/customers/:id/followups` | ADMIN / SALES            |
+
+## Products
+
+| Method | Endpoint            | Access            |
+| ------ | ------------------- | ----------------- |
+| GET    | `/api/products`     | Authenticated     |
+| POST   | `/api/products`     | ADMIN / WAREHOUSE |
+| GET    | `/api/products/:id` | Authenticated     |
+| PUT    | `/api/products/:id` | ADMIN / WAREHOUSE |
+
+## Inventory
+
+| Method | Endpoint                            | Access            |
+| ------ | ----------------------------------- | ----------------- |
+| GET    | `/api/products/:id/stock-movements` | Authenticated     |
+| POST   | `/api/products/:id/stock-in`        | ADMIN / WAREHOUSE |
+| POST   | `/api/products/:id/stock-out`       | ADMIN / WAREHOUSE |
+
+## Challans
+
+| Method | Endpoint                    | Access        |
+| ------ | --------------------------- | ------------- |
+| GET    | `/api/challans`             | Authenticated |
+| POST   | `/api/challans`             | ADMIN / SALES |
+| GET    | `/api/challans/:id`         | Authenticated |
+| PUT    | `/api/challans/:id`         | ADMIN / SALES |
+| POST   | `/api/challans/:id/confirm` | ADMIN / SALES |
+| POST   | `/api/challans/:id/cancel`  | ADMIN / SALES |
+
+---
+
+# 8. Environment Configuration
+
+Environment variables are not committed to Git.
+
+The repository contains `.env.example` files as templates.
+
+## Backend Environment
+
+Create:
+
+```text
+backend/.env
+```
+
+Example:
+
+```env
+NODE_ENV=development
+PORT=5000
+
+DATABASE_URL="postgresql://postgres:password@localhost:5432/crm_mvp"
+
+JWT_SECRET="your-long-random-secret"
+JWT_EXPIRES_IN="1d"
+
+CORS_ORIGIN="http://localhost:5173"
+```
+
+For production:
+
+```env
+NODE_ENV=production
+PORT=5000
+
+DATABASE_URL="postgresql://postgresadmin:PASSWORD@RDS_ENDPOINT:5432/crm_mvp?sslmode=require"
+
+JWT_SECRET="your-production-random-secret"
+JWT_EXPIRES_IN="1d"
+
+CORS_ORIGIN="https://YOUR-AMPLIFY-DOMAIN.amplifyapp.com"
+```
+
+Never commit:
+
+```text
+.env
+database passwords
+JWT secrets
+AWS credentials
+private keys
+```
+
+## Frontend Environment
+
+Create:
+
+```text
+frontend/.env
+```
+
+Example:
+
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+Production:
+
+```env
+VITE_API_URL=https://YOUR-EC2-API-DOMAIN/api
+```
+
+The frontend should never contain database credentials or JWT signing secrets.
+
+---
+
+# 9. Demo Credentials
+
+Development seed users can be created using the Prisma seed script.
+
+Example development credentials:
+
+| Role      | Email                                             | Password                  |
+| --------- | ------------------------------------------------- | ------------------------- |
+| ADMIN     | [admin@crm.local](mailto:admin@crm.local)         | Development seed password |
+| SALES     | [sales@crm.local](mailto:sales@crm.local)         | Development seed password |
+| WAREHOUSE | [warehouse@crm.local](mailto:warehouse@crm.local) | Development seed password |
+| ACCOUNTS  | [accounts@crm.local](mailto:accounts@crm.local)   | Development seed password |
+
+These credentials are for development/testing only.
+
+Production passwords must be changed and must not be hardcoded into application source code.
+
+---
+
+# 10. Local Development Setup
+
+## Prerequisites
+
+* Node.js
+* npm
+* PostgreSQL
+* Git
+
+## Backend
+
+```bash
+cd backend
+npm install
+```
+
+Create `.env`:
+
+```bash
+cp .env.example .env
+```
+
+Configure:
+
+```env
+DATABASE_URL=...
+JWT_SECRET=...
+JWT_EXPIRES_IN=1d
+```
+
+Generate Prisma Client:
+
+```bash
+npx prisma generate
+```
+
+Run migrations:
+
+```bash
+npx prisma migrate dev
+```
+
+Seed development data:
+
+```bash
+npx prisma db seed
+```
+
+Start backend:
+
+```bash
+npm run dev
+```
+
+Backend:
+
+```text
+http://localhost:5000
+```
+
+## Frontend
+
+```bash
+cd frontend
+npm install
+```
+
+Create:
+
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+Start:
+
+```bash
+npm run dev
+```
+
+Frontend:
+
+```text
+http://localhost:5173
+```
+
+---
+
+# 11. Production Deployment
+
+Target AWS architecture:
+
+```text
+React
+  |
+  v
+AWS Amplify
+  |
+  | HTTPS
+  v
+AWS EC2
+Node.js + Express
+  |
+  | PostgreSQL
+  v
+AWS RDS
+```
+
+## AWS RDS
+
+Create a PostgreSQL RDS database.
+
+Configure:
+
+* PostgreSQL engine
+* Database name
+* Master username
+* Strong master password
+* Appropriate VPC
+* Security group
+
+Allow inbound PostgreSQL traffic on port:
+
+```text
+5432
+```
+
+The recommended source is the EC2 security group rather than opening PostgreSQL to the public internet.
+
+## EC2
+
+Create an EC2 instance for the backend.
+
+Install:
+
+```bash
+git
+node
+npm
+nginx
+```
+
+Clone the project:
+
+```bash
+git clone <YOUR_REPOSITORY_URL>
+cd <PROJECT_DIRECTORY>/backend
+```
+
+Install production dependencies:
+
+```bash
+npm ci
+```
+
+Generate Prisma Client:
+
+```bash
+npx prisma generate
+```
+
+Configure the production `.env` with the RDS connection string.
+
+Apply production migrations:
+
+```bash
+npx prisma migrate deploy
+```
+
+Build:
+
+```bash
+npm run build
+```
+
+Start:
+
+```bash
+npm start
+```
+
+For a production server, use a process manager such as PM2 or a Docker container so the application can restart automatically.
+
+## Nginx
+
+Nginx can run on the EC2 instance in front of the Node.js API.
+
+Example:
+
+```text
+Internet
+   |
+   v
+Nginx :80/:443
+   |
+   v
+Node.js :5000
+   |
+   v
+RDS PostgreSQL
+```
+
+Nginx can handle:
+
+* HTTP to HTTPS redirect
+* TLS termination
+* Reverse proxying
+* API domain routing
+
+---
+
+# 12. Docker Deployment
+
+## Backend Docker Build
+
+Build the backend image:
+
+```bash
+cd backend
+docker build -t funds-crm-backend .
+```
+
+The production image should build the TypeScript application and generate Prisma Client.
+
+Do not place production secrets directly inside the Dockerfile.
+
+Provide environment variables at runtime.
+
+Example:
+
+```bash
+docker run \
+  --env-file .env \
+  -p 5000:5000 \
+  funds-crm-backend
+```
+
+## Prisma in Docker
+
+Prisma 7 uses `prisma.config.ts` for the database connection configuration.
+
+The Prisma schema datasource should not contain:
+
+```prisma
+url = env("DATABASE_URL")
+```
+
+Instead, the database URL is configured through `prisma.config.ts`.
+
+Example:
+
+```ts
+import "dotenv/config";
+import { defineConfig } from "prisma/config";
+
+export default defineConfig({
+  schema: "prisma/schema.prisma",
+
+  migrations: {
+    path: "prisma/migrations",
+    seed: "tsx prisma/seed.ts",
+  },
+
+  datasource: {
+    url: process.env.DATABASE_URL || "",
+  },
+});
+```
+
+Production migrations:
+
+```bash
+npx prisma migrate deploy
+```
+
+Do not use:
+
+```bash
+npx prisma migrate dev
+```
+
+against the production RDS database.
+
+Do not use:
+
+```bash
+npx prisma db push
+```
+
+for production schema management.
+
+## Frontend
+
+Build:
+
+```bash
+cd frontend
+npm run build
+```
+
+The generated production files are located in:
+
+```text
+frontend/dist/
+```
+
+AWS Amplify can build and host the React application.
+
+Configure:
+
+```env
+VITE_API_URL=https://YOUR-BACKEND-DOMAIN/api
+```
+
+---
+
+# 13. Testing
+
+## Backend Build
+
+```bash
+cd backend
+npm run build
+```
+
+## Frontend Build
+
+```bash
+cd frontend
+npm run build
+```
+
+## Prisma Validation
+
+```bash
+cd backend
+npx prisma validate
+```
+
+## Prisma Migration Status
+
+```bash
+npx prisma migrate status
+```
+
+## Tests
+
+If tests are configured:
+
+```bash
+npm test
+```
+
+Important scenarios to test:
+
+* Login success
+* Invalid login
+* Protected routes
+* Role authorization
+* Customer CRUD
+* Customer search
+* Customer pagination
+* Product CRUD
+* Duplicate SKU
+* Stock IN
+* Stock OUT
+* Insufficient stock
+* Challan creation
+* Challan confirmation
+* Stock deduction
+* Stock movement creation
+* Insufficient stock rollback
+* Duplicate confirmation
+* Challan cancellation
+
+---
+
+# 14. Project Structure
+
+```text
+final/
+|
+├── backend/
+│   |
+│   ├── prisma/
+│   │   ├── migrations/
+│   │   ├── schema.prisma
+│   │   └── seed.ts
+│   │
 │   ├── src/
-│   │   ├── config/   ← DB adapter, env parser, logger
-│   │   ├── middleware/← Auth, RBAC, validation, error handler
-│   │   ├── modules/  ← Feature modules (auth, customers, products, challans, invoices)
-│   │   └── utils/    ← Errors, storage, PDF generation
-│   ├── tests/        ← Integration test suite (Vitest)
-│   ├── uploads/      ← Local product image storage fallback
-│   ├── Dockerfile    ← Multi-stage production build
-│   └── docker-compose.yml
+│   │   ├── config/
+│   │   ├── middleware/
+│   │   ├── modules/
+│   │   │   ├── auth/
+│   │   │   ├── customers/
+│   │   │   ├── products/
+│   │   │   └── challans/
+│   │   ├── utils/
+│   │   ├── app.ts
+│   │   └── server.ts
+│   │
+│   ├── .env.example
+│   ├── Dockerfile
+│   ├── package.json
+│   ├── package-lock.json
+│   └── prisma.config.ts
 │
-├── frontend/         ← React SPA (port 5173 dev / port 80 prod)
+├── frontend/
+│   |
 │   ├── src/
-│   │   ├── context/  ← Auth context + Axios header bootstrap
-│   │   ├── components/← ProtectedRoute, Layout, Sidebar
-│   │   └── pages/    ← Dashboard, Customers, Products, Inventory,
-│   │                    Challans, CreateChallan, Invoices, Users
-│   ├── Dockerfile    ← Nginx production image
-│   └── nginx.conf    ← SPA fallback routing
+│   │   ├── components/
+│   │   ├── layouts/
+│   │   ├── pages/
+│   │   ├── routes/
+│   │   ├── services/
+│   │   ├── hooks/
+│   │   ├── types/
+│   │   └── utils/
+│   │
+│   ├── .env.example
+│   ├── Dockerfile
+│   ├── package.json
+│   └── package-lock.json
 │
 ├── .gitignore
 └── README.md
@@ -108,430 +956,91 @@ d:\final\
 
 ---
 
-## 4. Database Schema
+# Git Safety
 
-```mermaid
-erDiagram
-    User {
-        uuid id PK
-        string name
-        string email
-        string passwordHash
-        enum role
-        bool isActive
-    }
-    Customer {
-        uuid id PK
-        string customerName
-        string mobile
-        string email
-        string businessName
-        string gstNumber
-        enum customerType
-        enum status
-        datetime followUpDate
-    }
-    Product {
-        uuid id PK
-        string name
-        string sku
-        string category
-        decimal unitPrice
-        int currentStock
-        int minimumStock
-        string warehouseLocation
-    }
-    SalesChallan {
-        uuid id PK
-        string challanNumber
-        enum status
-        int totalQuantity
-        datetime confirmedAt
-        datetime cancelledAt
-    }
-    SalesChallanItem {
-        uuid id PK
-        string productNameSnapshot
-        string skuSnapshot
-        decimal unitPriceSnapshot
-        int quantity
-        decimal totalPrice
-    }
-    StockMovement {
-        uuid id PK
-        int quantityChanged
-        enum movementType
-        string reason
-        string referenceType
-    }
-    Invoice {
-        uuid id PK
-        string invoiceNumber
-        decimal subtotal
-        decimal tax
-        decimal total
-        enum status
-    }
-    CustomerFollowUp {
-        uuid id PK
-        string note
-        datetime followUpDate
-    }
+The following files must never be committed:
 
-    User ||--o{ Customer : "creates"
-    User ||--o{ CustomerFollowUp : "logs"
-    User ||--o{ StockMovement : "records"
-    User ||--o{ SalesChallan : "manages"
-    User ||--o{ Invoice : "generates"
-    Customer ||--o{ CustomerFollowUp : "has"
-    Customer ||--o{ SalesChallan : "receives"
-    Customer ||--o{ Invoice : "billed-to"
-    Product ||--o{ StockMovement : "tracks"
-    Product ||--o{ SalesChallanItem : "included-in"
-    SalesChallan ||--o{ SalesChallanItem : "contains"
-    SalesChallan ||--o{ Invoice : "originates"
+```text
+.env
+.env.local
+.env.production
+*.pem
+*.key
+AWS credentials
+database passwords
+JWT secrets
+```
+
+The following should be committed:
+
+```text
+.env.example
+prisma/schema.prisma
+prisma/migrations/
+package.json
+package-lock.json
+Dockerfile
+README.md
+source code
 ```
 
 ---
 
-## 5. Role-Based Access Control
+# Production Verification Checklist
 
-| Feature | ADMIN | SALES | WAREHOUSE | ACCOUNTS |
-|---|:---:|:---:|:---:|:---:|
-| Login / Dashboard | ✅ | ✅ | ✅ | ✅ |
-| View Customers | ✅ | ✅ | ❌ | ✅ |
-| Create / Edit Customers | ✅ | ✅ | ❌ | ❌ |
-| Delete Customers | ✅ | ❌ | ❌ | ❌ |
-| Add CRM Follow-Ups | ✅ | ✅ | ❌ | ❌ |
-| View Products | ✅ | ✅ | ✅ | ✅ |
-| Create / Edit Products | ✅ | ❌ | ✅ | ❌ |
-| Adjust Stock (IN/OUT) | ✅ | ❌ | ✅ | ❌ |
-| View Stock Movements | ✅ | ✅ | ✅ | ✅ |
-| Create Sales Challans | ✅ | ✅ | ❌ | ❌ |
-| Confirm / Cancel Challans | ✅ | ✅ | ❌ | ❌ |
-| View Invoices | ✅ | ✅ | ❌ | ✅ |
-| Download PDF (Challan/Invoice) | ✅ | ✅ | ❌ | ✅ |
-| User Management | ✅ | ❌ | ❌ | ❌ |
+Before deployment:
 
----
+```bash
+# Backend
+cd backend
+npm ci
+npx prisma generate
+npx prisma validate
+npm run build
 
-## 6. Feature Modules
-
-### 🔐 Authentication
-- JWT-signed tokens with configurable expiry (`JWT_EXPIRES_IN`)
-- Passwords hashed using bcrypt (10 salt rounds)
-- Token accepted via `Authorization: Bearer <token>` header **or** `?token=<token>` query parameter (for PDF browser tab requests)
-- `/api/auth/me` endpoint for session validation on app load
-
-### 👥 Customer CRM
-- Paginated customer directory with full-text search (name, business, email, mobile)
-- Filter by status (`LEAD`, `ACTIVE`, `INACTIVE`) and type (`RETAIL`, `WHOLESALE`, `DISTRIBUTOR`)
-- Per-customer activity timeline with follow-up date scheduling
-- GSTIN storage and validation
-
-### 📦 Products & Inventory
-- Product catalog with SKU, category, unit price, warehouse location, and image
-- Automatic stock status classification: **Healthy** / **Low Stock** (≤ minimum) / **Out of Stock**
-- Manual stock adjustment ledger (IN/OUT) with timestamped reason logs
-- Dashboard counters for out-of-stock and low-stock product counts
-
-### 📋 Sales Challans
-- Sequential auto-numbered challan IDs (e.g. `CH-2024-0001`) with row-level lock protection
-- Draft → Confirmed → Cancelled state machine
-- Confirmation atomically deducts stock per line item inside a single PostgreSQL transaction
-- If any product has insufficient stock, the entire transaction rolls back with a descriptive error
-- Idempotency guard prevents double-confirmation of already-confirmed challans
-- On-the-fly printable PDF generation (binary stream, no temp files)
-
-### 🧾 Tax Invoices
-- Automatically created when a challan is confirmed
-- 18% GST applied on subtotal; grand total calculated
-- Sequential invoice numbering (e.g. `INV-2024-0001`)
-- Printable PDF with full line-item breakdown, customer GSTIN, and tax summary
-
-### 👤 User Management (Admin only)
-- Create users with name, email, password, and role assignment
-- Edit user role and active status
-- Users list with role badges
-
----
-
-## 7. API Reference
-
-All endpoints are prefixed with `/api`. Protected routes require `Authorization: Bearer <token>`.
-
-### Auth
-| Method | Endpoint | Auth | Description |
-|---|---|---|---|
-| POST | `/auth/login` | Public | Login with email & password |
-| GET | `/auth/me` | 🔐 Any | Get current user session |
-| GET | `/auth/users` | 🔐 Admin | List all users |
-| POST | `/auth/users` | 🔐 Admin | Create a new user |
-| PATCH | `/auth/users/:id` | 🔐 Admin | Update user role/status |
-
-### Customers
-| Method | Endpoint | Auth | Description |
-|---|---|---|---|
-| GET | `/customers` | 🔐 Admin/Sales/Accounts | List customers (paginated, filterable) |
-| POST | `/customers` | 🔐 Admin/Sales | Create customer |
-| GET | `/customers/:id` | 🔐 Admin/Sales/Accounts | Get customer details |
-| PATCH | `/customers/:id` | 🔐 Admin/Sales | Update customer |
-| DELETE | `/customers/:id` | 🔐 Admin | Delete customer |
-| GET | `/customers/:id/follow-ups` | 🔐 Admin/Sales/Accounts | List follow-ups |
-| POST | `/customers/:id/follow-ups` | 🔐 Admin/Sales | Add follow-up |
-
-### Products & Inventory
-| Method | Endpoint | Auth | Description |
-|---|---|---|---|
-| GET | `/products` | 🔐 Any | List products (paginated, filterable) |
-| POST | `/products` | 🔐 Admin/Warehouse | Create product |
-| GET | `/products/:id` | 🔐 Any | Get product detail |
-| PATCH | `/products/:id` | 🔐 Admin/Warehouse | Update product |
-| DELETE | `/products/:id` | 🔐 Admin | Deactivate product |
-| POST | `/products/:id/stock` | 🔐 Admin/Warehouse | Manual stock adjustment |
-| GET | `/products/stock-movements` | 🔐 Any | Paginated stock movement ledger |
-| POST | `/products/:id/image` | 🔐 Admin/Warehouse | Upload product image |
-
-### Sales Challans
-| Method | Endpoint | Auth | Description |
-|---|---|---|---|
-| GET | `/challans` | 🔐 Any | List challans (paginated) |
-| POST | `/challans` | 🔐 Admin/Sales | Create draft challan |
-| GET | `/challans/:id` | 🔐 Any | Get challan with items |
-| POST | `/challans/:id/confirm` | 🔐 Admin/Sales | Confirm & deduct stock |
-| POST | `/challans/:id/cancel` | 🔐 Admin/Sales | Cancel challan |
-| GET | `/challans/:id/pdf` | 🔐 Any* | Stream challan PDF |
-
-### Invoices
-| Method | Endpoint | Auth | Description |
-|---|---|---|---|
-| GET | `/invoices` | 🔐 Any | List invoices (paginated) |
-| GET | `/invoices/:id` | 🔐 Any | Get invoice detail |
-| GET | `/invoices/:id/pdf` | 🔐 Any* | Stream invoice PDF |
-
-> *PDF endpoints also accept `?token=<jwt>` query parameter for browser tab access.
-
----
-
-## 8. Environment Configuration
-
-Copy `backend/.env.example` to `backend/.env` and fill in your values:
-
-```env
-# Server
-PORT=5000
-NODE_ENV=development
-
-# PostgreSQL
-DATABASE_URL=postgresql://postgres:password@localhost:5432/crm_mvp
-
-# JWT
-JWT_SECRET=your-super-secret-jwt-key-minimum-32-characters
-JWT_EXPIRES_IN=7d
-
-# CORS
-CLIENT_URL=http://localhost:5173
-
-# AWS S3 (optional — falls back to local disk storage if not set)
-AWS_REGION=us-east-1
-AWS_ACCESS_KEY_ID=
-AWS_SECRET_ACCESS_KEY=
-AWS_S3_BUCKET=
+# Frontend
+cd ../frontend
+npm ci
+npm run build
 ```
 
-> **Note**: `DATABASE_URL` is read by `prisma.config.ts` and injected via the `@prisma/adapter-pg` driver. The `schema.prisma` datasource block intentionally has no `url` field (Prisma 7 requirement).
-
----
-
-## 9. Demo Credentials
-
-After running `npm run db:seed`, the following accounts are available:
-
-| Role | Email | Password | Access Level |
-|---|---|---|---|
-| **Admin** | `admin@example.com` | `password123` | Full system access |
-| **Sales** | `sales@example.com` | `password123` | CRM + Challans |
-| **Warehouse** | `warehouse@example.com` | `password123` | Inventory + Stock |
-| **Accounts** | `accounts@example.com` | `password123` | Invoices + Financials |
-
-> ⚠️ If you run `npm run test`, the test suite wipes and re-creates the database. Re-run `npm run db:seed` after testing to restore demo accounts.
-
----
-
-## 10. Local Development Setup
-
-### Prerequisites
-- Node.js v18+ (v22 recommended)
-- PostgreSQL 15 running locally
-- npm v9+
-
-### Backend Setup
+On EC2:
 
 ```bash
 cd backend
-
-# 1. Configure environment
-cp .env.example .env
-# Edit .env with your DATABASE_URL and JWT_SECRET
-
-# 2. Install dependencies
-npm install
-
-# 3. Run schema migrations
-npx prisma migrate dev
-
-# 4. Seed demo data (users, products, customers, challans)
-npm run db:seed
-
-# 5. Start dev server (hot-reload via tsx watch)
-npm run dev
-# → API running at http://localhost:5000
-# → Swagger docs at http://localhost:5000/api/docs
+npm ci
+npx prisma generate
+npx prisma migrate deploy
+npm run build
+npm start
 ```
 
-### Frontend Setup
+Verify:
 
-```bash
-cd frontend
-
-# 1. Install dependencies
-npm install
-
-# 2. Start dev server
-npm run dev
-# → App running at http://localhost:5173
-```
-
-### Available npm Scripts
-
-#### Backend (`backend/`)
-| Script | Command | Description |
-|---|---|---|
-| `npm run dev` | `tsx watch src/index.ts` | Hot-reload dev server |
-| `npm run build` | `tsc` | TypeScript compilation |
-| `npm run start` | `node dist/index.js` | Run compiled production build |
-| `npm run test` | `vitest run` | Run integration test suite |
-| `npm run db:migrate` | `prisma migrate dev` | Apply schema migrations |
-| `npm run db:seed` | `prisma db seed` | Seed demo data |
-
-#### Frontend (`frontend/`)
-| Script | Command | Description |
-|---|---|---|
-| `npm run dev` | `vite` | Vite hot-reload dev server |
-| `npm run build` | `tsc -b && vite build` | Production bundle |
-| `npm run preview` | `vite preview` | Preview production build |
-
----
-
-## 11. Production & Docker Deployment
-
-### Docker Compose (Full Stack)
-
-```bash
-cd backend
-docker compose up --build
-```
-
-This spins up three containers:
-- `db` — PostgreSQL 15
-- `api` — Node.js Express API (port 5000)
-- `web` — Nginx serving the React build (port 80)
-
-### Individual Dockerfiles
-
-**Backend** (`backend/Dockerfile`): Multi-stage build — installs deps, compiles TypeScript, runs `node dist/index.js`.
-
-**Frontend** (`frontend/Dockerfile`): Multi-stage build — Vite builds the SPA, then copies `dist/` into an Nginx image.
-
-### Nginx SPA Routing
-
-`frontend/nginx.conf` includes the fallback rule to prevent 404s on React Router page refreshes:
-
-```nginx
-location / {
-    root   /usr/share/nginx/html;
-    index  index.html index.htm;
-    try_files $uri $uri/ /index.html;
-}
+```text
+Frontend loads successfully
+API responds successfully
+Login works
+JWT authentication works
+Role authorization works
+RDS connection works
+Customer APIs work
+Product APIs work
+Inventory APIs work
+Challan confirmation works
+Stock deduction works
+CORS allows only the configured frontend origin
 ```
 
 ---
 
-## 12. Testing
+# License
 
-### Integration Test Suite
-
-The backend ships with **14 automated integration tests** covering:
-
-| Category | Tests |
-|---|---|
-| Authentication & RBAC | Login failure, unauthenticated access, role enforcement |
-| Customer CRM Module | Customer creation, email validation |
-| Product & Inventory | Product creation, duplicate SKU rejection, negative stock prevention |
-| Sales Challan Flow | Challan creation, confirmation + stock deduction, idempotency, insufficient stock rollback |
-
-```bash
-cd backend
-npm run test
-```
-
-Expected output:
-```
-✓ tests/api.test.ts (14 tests) ~800ms
-
-Test Files  1 passed (1)
-     Tests  14 passed (14)
-```
-
-> The test suite automatically re-seeds the database after all tests complete, so demo accounts are always restored.
-
----
-
-## 13. Project Structure
+This project was built as a technical case study demonstration.
 
 ```
-backend/src/
-├── config/
-│   ├── db.ts           ← PrismaClient with @prisma/adapter-pg
-│   ├── env.ts          ← Zod-validated environment variables
-│   └── logger.ts       ← Winston structured logger
-├── middleware/
-│   ├── auth.ts         ← JWT authentication + RBAC authorize()
-│   ├── errorHandler.ts ← Global Express error handler
-│   └── validator.ts    ← Zod request body/query validation
-├── modules/
-│   ├── auth/           ← Login, /me, user management
-│   ├── customers/      ← CRM module + follow-ups
-│   ├── products/       ← Catalog + stock adjustments + movements
-│   ├── challans/       ← Draft/Confirm/Cancel + PDF
-│   └── invoices/       ← Invoice list + PDF
-└── utils/
-    ├── errors.ts       ← Typed HTTP error classes
-    ├── pdf.ts          ← PDFKit document generators
-    └── storage.ts      ← Multer/S3 storage adapter
 
-frontend/src/
-├── context/
-│   └── AuthContext.tsx ← JWT token management + Axios bootstrap
-├── components/
-│   ├── Layout.tsx      ← App shell with sidebar
-│   └── ProtectedRoute.tsx ← Route auth + role guards
-└── pages/
-    ├── Dashboard.tsx   ← KPI widgets + Recharts analytics
-    ├── Login.tsx       ← Auth form + demo quick-login panel
-    ├── Customers.tsx   ← CRM directory
-    ├── CustomerDetails.tsx ← CRM timeline + follow-ups
-    ├── Products.tsx    ← Product catalog
-    ├── Inventory.tsx   ← Stock movement ledger
-    ├── CreateChallan.tsx ← Challan builder form
-    ├── Challans.tsx    ← Challan list
-    ├── ChallanDetails.tsx ← Challan view + confirm/cancel + PDF
-    ├── Invoices.tsx    ← Invoice list + PDF download
-    └── Users.tsx       ← Admin user management
+One important correction from your old README: I removed claims such as **"GST-compliant tax invoices", "14 automated tests", PDF generation, S3, Winston, Recharts, and invoice functionality** where they weren't part of the current setup you described. Your README should describe what is actually implemented, not features that may make the project look larger than it is. Your uploaded README currently contains those claims. :contentReference[oaicite:0]{index=0}
+
+Also, your current uploaded README says Prisma 7.9.1 but still describes the older `DATABASE_URL` setup and a `schema.prisma` datasource without `url`; the updated version above makes the Prisma 7 deployment setup explicit. :contentReference[oaicite:1]{index=1} :contentReference[oaicite:2]{index=2}
 ```
-
----
-
-## License
-
-This project was built as a technical case study demonstration. All code is original.
