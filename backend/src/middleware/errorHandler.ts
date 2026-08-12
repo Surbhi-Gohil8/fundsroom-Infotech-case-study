@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import { AppError } from '../utils/errors.js';
 import { logger } from '../config/logger.js';
 import { ZodError } from 'zod';
-import { Prisma } from '@prisma/client';
 
 export const errorHandler = (
   err: any,
@@ -41,8 +40,12 @@ export const errorHandler = (
     return;
   }
 
-  // Handle Prisma Database Errors
-  if (err instanceof Prisma.PrismaClientKnownRequestError) {
+  // Handle Prisma Database Errors — use constructor name check to avoid
+  // ESM/CJS named-export interop issues with @prisma/client in production
+  if (
+    err.constructor?.name === 'PrismaClientKnownRequestError' ||
+    err.name === 'PrismaClientKnownRequestError'
+  ) {
     if (err.code === 'P2002') {
       const targets = (err.meta?.target as string[]) || [];
       res.status(409).json({
