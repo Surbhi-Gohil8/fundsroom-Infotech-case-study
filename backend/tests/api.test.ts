@@ -55,14 +55,16 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  // Restore demo seed data so the app is usable after running tests
-  try {
-    execSync('npx prisma db seed', { stdio: 'ignore', cwd: process.cwd() });
-  } catch {
-    // Seed errors are non-fatal for test results
+  // Re-seed only in local dev — CI environments are discarded after the run
+  if (!process.env.CI) {
+    try {
+      execSync('npx prisma db seed', { stdio: 'ignore', cwd: process.cwd() });
+    } catch {
+      // Seed errors are non-fatal for test results
+    }
   }
   await prisma.$disconnect();
-});
+}, 60000); // 60s timeout covers local seed duration
 
 describe('1. Authentication and RBAC', () => {
   it('Login success with valid credentials', async () => {
