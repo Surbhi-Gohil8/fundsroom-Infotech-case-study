@@ -1,23 +1,50 @@
+# -------------------------
 # Build stage
-FROM node:20-alpine AS builder
+# -------------------------
+FROM node:22-alpine AS builder
+
 WORKDIR /app
+
 COPY package*.json ./
-COPY prisma ./prisma/
+
+# Install all dependencies because Prisma CLI and TypeScript
+# are required during the build.
 RUN npm ci
-COPY . .
+
+COPY prisma ./prisma
+COPY prisma.config.ts ./
+
+# Generate Prisma Client
 RUN npx prisma generate
+
+COPY tsconfig.json ./
+COPY src ./src
+
+# Build TypeScript
 RUN npm run build
 
-# Run stage
-FROM node:20-alpine
+
+# -------------------------
+# Production stage
+# -------------------------
+FROM node:22-alpine AS production
+
 WORKDIR /app
-COPY package*.json ./
-RUN npm ci --omit=dev
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
-COPY --from=builder /app/node_modules/@prisma/client ./node_modules/@prisma/client
 
 ENV NODE_ENV=production
+
+COPY package*.json ./
+
+# Install production dependencies only.
+RUN npm ci --omit=dev --ignore-scripts
+
+# Copy generated Prisma client and application build
+COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
+COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/prisma ./prisma
+COPY --from=builder /app/prisma.config.ts ./prisma.config.ts
+
 EXPOSE 5000
-CMD ["node", "dist/index.js"]
+
+CMD ["node", "dist/server.js"]
