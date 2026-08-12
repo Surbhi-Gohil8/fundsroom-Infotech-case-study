@@ -216,7 +216,7 @@ export const Products: React.FC = () => {
 
             // Image URL logic
             const displayImgUrl = prod.imageUrl
-              ? (prod.imageUrl.startsWith('/uploads/') ? `http://localhost:5000${prod.imageUrl}` : prod.imageUrl)
+              ? (prod.imageUrl.startsWith('/uploads/') ? `process.env.VITE_API_URL${prod.imageUrl}` : prod.imageUrl)
               : null;
 
             return (
