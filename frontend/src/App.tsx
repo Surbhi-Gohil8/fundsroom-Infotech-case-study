@@ -43,7 +43,7 @@ export const App: React.FC = () => {
               <Route
                 index
                 element={
-                  <ProtectedRoute allowedRoles={['ADMIN', 'SALES', 'ACCOUNTS']}>
+                  <ProtectedRoute allowedRoles={['ADMIN', 'SALES', 'WAREHOUSE', 'ACCOUNTS']}>
                     <Dashboard />
                   </ProtectedRoute>
                 }
@@ -91,7 +91,7 @@ export const App: React.FC = () => {
               <Route
                 path="challans"
                 element={
-                  <ProtectedRoute allowedRoles={['ADMIN', 'SALES', 'ACCOUNTS']}>
+                  <ProtectedRoute allowedRoles={['ADMIN', 'SALES', 'WAREHOUSE', 'ACCOUNTS']}>
                     <Challans />
                   </ProtectedRoute>
                 }
@@ -107,7 +107,7 @@ export const App: React.FC = () => {
               <Route
                 path="challans/:id"
                 element={
-                  <ProtectedRoute allowedRoles={['ADMIN', 'SALES', 'ACCOUNTS']}>
+                  <ProtectedRoute allowedRoles={['ADMIN', 'SALES', 'WAREHOUSE', 'ACCOUNTS']}>
                     <ChallanDetails />
                   </ProtectedRoute>
                 }
