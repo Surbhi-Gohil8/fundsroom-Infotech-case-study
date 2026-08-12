@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Search, Plus, UserCheck, UserX, ShieldAlert, Key } from 'lucide-react';
 
-const API_BASE_URL = 'process.env.VITE_API_URL/api';
+import { API_BASE_URL } from '../config/api.js';
 
 export const Users: React.FC = () => {
   const [usersList, setUsersList] = useState<any[]>([]);

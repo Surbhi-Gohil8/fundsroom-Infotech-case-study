@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Search, Receipt, Printer, Landmark } from 'lucide-react';
 import { useAuth } from '../context/AuthContext.js';
 
-const API_BASE_URL = 'http://localhost:5000/api';
+import { API_BASE_URL } from '../config/api.js';
 
 export const Invoices: React.FC = () => {
   const { user, token } = useAuth();

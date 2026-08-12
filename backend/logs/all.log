@@ -868,3 +868,7 @@ Argument `take`: Invalid value provided. Expected Int, provided String.
 [2026-08-12 11:41:53:4153] [INFO]: AWS S3 storage backend initialized
 [2026-08-12 11:41:54:4154] [INFO]: Server is running in development mode on port 5000
 [2026-08-12 11:41:54:4154] [INFO]: API Documentation available at http://localhost:5000/api/docs
+[2026-08-12 12:27:24:2724] [INFO]: AWS S3 storage backend initialized
+[2026-08-12 12:27:24:2724] [INFO]: Server is running in development mode on port 5000
+[2026-08-12 12:27:24:2724] [INFO]: API Documentation available at http://localhost:5000/api/docs
+[2026-08-12 12:28:15:2815] [ERROR]: GET /api/invoices/4511fde2-944c-44c8-a229-ba1bfd4756bf/pdf - Error: Authentication token missing or invalid

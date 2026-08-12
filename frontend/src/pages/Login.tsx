@@ -5,6 +5,7 @@ import { z } from 'zod';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.js';
+import { API_BASE_URL } from '../config/api.js';
 import { Shield, Eye, EyeOff } from 'lucide-react';
 
 const loginFormSchema = z.object({
@@ -34,7 +35,7 @@ export const Login: React.FC = () => {
     setIsSubmitting(true);
     setErrorMsg(null);
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', data);
+      const response = await axios.post(`${API_BASE_URL}/auth/login`, data);
       if (response.data.success) {
         const { token, user } = response.data.data;
         login(token, user);

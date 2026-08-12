@@ -4,7 +4,7 @@ import axios from 'axios';
 import { ArrowLeft, Check, X, FileDown, Printer, Receipt, AlertCircle } from 'lucide-react';
 import { useAuth } from '../context/AuthContext.js';
 
-const API_BASE_URL = 'http://localhost:5000/api';
+import { API_BASE_URL } from '../config/api.js';
 
 export const ChallanDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();

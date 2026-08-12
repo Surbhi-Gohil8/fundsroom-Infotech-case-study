@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Plus, Trash2, ShieldAlert, ArrowLeft, Check, AlertCircle } from 'lucide-react';
 
-const API_BASE_URL = 'http://localhost:5000/api';
+import { API_BASE_URL } from '../config/api.js';
 
 interface LineItem {
   productId: string;

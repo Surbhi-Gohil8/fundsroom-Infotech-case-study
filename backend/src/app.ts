@@ -22,7 +22,27 @@ app.use(helmet({
 }));
 
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173',
+  origin: (origin, callback) => {
+    // Allow requests with no origin (mobile, curl, server-to-server)
+    if (!origin) return callback(null, true);
+    
+    // Check if origin matches allowed origin or local dev
+    if (
+      !process.env.CLIENT_URL ||
+      process.env.CLIENT_URL === '*' ||
+      origin === process.env.CLIENT_URL ||
+      origin === process.env.CLIENT_URL.replace(/\/+$/, '') ||
+      origin.includes('localhost') ||
+      origin.includes('127.0.0.1') ||
+      origin.includes('onrender.com') ||
+      origin.includes('amplifyapp.com') ||
+      origin.includes('vercel.app') ||
+      origin.includes('netlify.app')
+    ) {
+      return callback(null, true);
+    }
+    return callback(null, true);
+  },
   credentials: true,
 }));
 

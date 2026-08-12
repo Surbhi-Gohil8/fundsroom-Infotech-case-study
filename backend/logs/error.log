@@ -760,3 +760,4 @@ D:\final\backend\src\modules\products\products.controller.ts:337:28
         })
 
 Argument `take`: Invalid value provided. Expected Int, provided String.
+[2026-08-12 12:28:15:2815] [ERROR]: GET /api/invoices/4511fde2-944c-44c8-a229-ba1bfd4756bf/pdf - Error: Authentication token missing or invalid

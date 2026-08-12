@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Search, Plus, Package, Edit2, AlertTriangle, ShieldAlert, CheckCircle, Image } from 'lucide-react';
 import { useAuth } from '../context/AuthContext.js';
 
-const API_BASE_URL = 'http://localhost:5000/api';
+import { API_BASE_URL, getBackendHost } from '../config/api.js';
 
 export const Products: React.FC = () => {
   const { user } = useAuth();
@@ -216,7 +216,7 @@ export const Products: React.FC = () => {
 
             // Image URL logic
             const displayImgUrl = prod.imageUrl
-              ? (prod.imageUrl.startsWith('/uploads/') ? `process.env.VITE_API_URL${prod.imageUrl}` : prod.imageUrl)
+              ? (prod.imageUrl.startsWith('/uploads/') ? `${getBackendHost()}${prod.imageUrl}` : prod.imageUrl)
               : null;
 
             return (
