@@ -2,7 +2,7 @@ import { Response, NextFunction } from 'express';
 import { prisma } from '../../config/db.js';
 import { AuthenticatedRequest } from '../../middleware/auth.js';
 import { NotFoundError, BadRequestError, ConflictError, AppError } from '../../utils/errors.js';
-import type { Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 
 // Concurrency-safe helper to fetch the next challan number
 async function getNextChallanNumber(tx: any): Promise<string> {

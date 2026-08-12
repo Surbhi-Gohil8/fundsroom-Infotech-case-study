@@ -3,7 +3,7 @@ import { prisma } from '../../config/db.js';
 import { AuthenticatedRequest } from '../../middleware/auth.js';
 import { NotFoundError, BadRequestError, ConflictError } from '../../utils/errors.js';
 import { uploadFile, deleteFile } from '../../utils/storage.js';
-import type { Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 
 export const listProducts = async (req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
